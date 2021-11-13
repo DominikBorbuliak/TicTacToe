@@ -1,30 +1,27 @@
 import React, { Fragment, useState } from 'react'
-import Square from './Square'
+import Field from './Field'
+import { FieldType } from '../store/types'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../assets/css/game.css'
 
 interface Props {
+    squares: FieldType[]
+    onFieldClick: (index: number) => void
 }
 
-const Board = () => {
-    const [isXsTurn, setIsXsTurn] = useState<boolean>(true)
-
-    const onSquareClick = () => {
-        setIsXsTurn(!isXsTurn);
-    }
-
-    const board = [...Array(9)].map(() =>
-        <div className="grid-item">
-            <Square isXsTurn={isXsTurn} onSquareClick={onSquareClick}/>
-        </div>
-    )
+const Board = (props: Props) => {
+    const { squares, onFieldClick } = props
 
     return (
-        <Fragment>
+        <div className="board">
             <div className="grid-container">
-                {board}
+                {squares.map((type, index) => 
+                    <div className="grid-item">
+                        <Field index={index} fieldType={type} onFieldClick={onFieldClick} />
+                    </div>
+                )}
             </div>
-        </Fragment>
+        </div>
     )
 }
 

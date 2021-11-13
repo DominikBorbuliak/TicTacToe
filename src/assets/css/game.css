@@ -6,6 +6,14 @@
     height: 78vh;
 }
 
+.board { 
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
 .grid-item {
     display: flex;
     align-items: center;
